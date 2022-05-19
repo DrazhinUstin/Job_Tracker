@@ -1,0 +1,27 @@
+.auth-btn-container {
+    position: relative;
+}
+
+.auth-btn {
+    @extend .btn;
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    &.active {
+        & ~ button {
+            display: inline-block;
+        }
+        svg:last-of-type {
+            transform: rotate(180deg);
+        }
+    }
+    & ~ button {
+        position: absolute;
+        bottom: -0.5rem;
+        left: 0;
+        transform: translateY(100%);
+        width: 100%;
+        display: none;
+        background-color: $red;
+    }
+}
