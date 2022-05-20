@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axiosInstance from '../../utils/axios';
 import { getStorageItem, setStorageItem, removeStorageItem } from '../../utils/storage';
+import { toast } from 'react-toastify';
 
 const initialState = {
     isLoading: false,
@@ -26,6 +27,7 @@ const userSlice = createSlice({
         logoutUser(state) {
             state.user = null;
             removeStorageItem('user');
+            toast.success('you are logged out');
         },
     },
     extraReducers: {
@@ -36,10 +38,11 @@ const userSlice = createSlice({
             state.isLoading = false;
             state.user = user;
             setStorageItem('user', user);
+            toast.success(`welcome, ${user.name}`);
         },
         [loginUser.rejected]: (state, { payload }) => {
             state.isLoading = false;
-            console.log(payload);
+            toast.error(payload);
         },
     },
 });

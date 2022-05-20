@@ -11,7 +11,7 @@ const AuthBtn = () => {
 
     if (!user) {
         return (
-            <Link to='/signup' className='btn'>
+            <Link to='/login' className='btn'>
                 log in / sign up
             </Link>
         );

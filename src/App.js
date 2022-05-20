@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HomePage, DashboardPage, AuthPage, ErrorPage } from './pages';
 import PrivateRoute from './PrivateRoute';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
     return (
@@ -15,9 +16,14 @@ const App = () => {
                         </PrivateRoute>
                     }
                 />
-                <Route path='signup' element={<AuthPage />} />
+                <Route path='login' element={<AuthPage />} />
                 <Route path='*' element={<ErrorPage />} />
             </Routes>
+            <ToastContainer
+                position='top-center'
+                theme='dark'
+                style={{ textTransform: 'capitalize' }}
+            />
         </Router>
     );
 };
