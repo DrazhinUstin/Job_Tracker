@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../features/user/userSlice';
+import { toast } from 'react-toastify';
 import { FormField } from '../components';
+import { loginUser } from '../features/user/userSlice';
 
 const AuthPage = () => {
     const [formValues, setFormValues] = useState({
@@ -31,7 +32,7 @@ const AuthPage = () => {
         e.preventDefault();
         const { name, email, password } = formValues;
         if (!email || !password || (!isLoginForm && !name)) {
-            console.log('please fill out all fields');
+            toast.error('please fill out all fields');
             return;
         }
         if (isLoginForm) {
