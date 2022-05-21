@@ -49,7 +49,7 @@ const Profile = () => {
                 onChange={handleChange}
             />
             <button type='submit' className='btn-block' disabled={isLoading}>
-                save changes
+                {isLoading ? 'loading...' : 'save changes'}
             </button>
         </form>
     );

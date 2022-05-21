@@ -22,12 +22,7 @@ export const loginUser = createAsyncThunk('user/loginUser', async (user, thunkAP
 
 export const updateUser = createAsyncThunk('user/updateUser', async (user, thunkAPI) => {
     try {
-        const { token } = thunkAPI.getState().user.user;
-        const response = await axiosInstance.patch('/auth/updateUser', user, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
+        const response = await axiosInstance.patch('/auth/updateUser', user);
         return response.data.user;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data.msg);

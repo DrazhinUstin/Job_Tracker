@@ -67,7 +67,17 @@ const AuthPage = () => {
                     onChange={handleChange}
                 />
                 <button type='submit' className='btn-block' disabled={isLoading}>
-                    submit
+                    {isLoading ? 'loading...' : 'submit'}
+                </button>
+                <button
+                    type='button'
+                    className='btn-block'
+                    disabled={isLoading}
+                    onClick={() =>
+                        dispatch(loginUser({ email: 'testUser@test.com', password: 'secret' }))
+                    }
+                >
+                    {isLoading ? 'loading...' : 'demo mode'}
                 </button>
                 <p>
                     {isLoginForm ? "Don't have an account? " : 'Already have an account? '}
