@@ -4,9 +4,21 @@ import { toast } from 'react-toastify';
 
 const initialState = {
     isLoading: false,
+    jobs: [],
+    totalJobs: 0,
+    numOfPages: 1,
     stats: {},
     monthlyApplications: [],
 };
+
+export const getJobs = createAsyncThunk('jobs/getJobs', async (_, thunkApi) => {
+    try {
+        const response = await axiosInstance.get('/jobs');
+        return response.data;
+    } catch (error) {
+        return thunkApi.rejectWithValue(error.response.data.msg);
+    }
+});
 
 export const getStats = createAsyncThunk('jobs/getStats', async (_, thunkApi) => {
     try {
@@ -30,6 +42,16 @@ const jobsSlice = createSlice({
             state.monthlyApplications = payload.monthlyApplications;
         },
         [getStats.rejected]: (state, { payload }) => {
+            state.isLoading = false;
+            toast.error(payload);
+        },
+        [getJobs.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [getJobs.fulfilled]: (state, { payload: { jobs, numOfPages, totalJobs } }) => {
+            return { ...state, isLoading: false, jobs, numOfPages, totalJobs };
+        },
+        [getJobs.rejected]: (state, { payload }) => {
             state.isLoading = false;
             toast.error(payload);
         },

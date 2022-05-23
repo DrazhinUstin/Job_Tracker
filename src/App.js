@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HomePage, DashboardPage, Stats, Profile, AuthPage, ErrorPage } from './pages';
+import { HomePage, DashboardPage, Stats, Jobs, Profile, AuthPage, ErrorPage } from './pages';
 import PrivateRoute from './PrivateRoute';
 import { ToastContainer } from 'react-toastify';
 
@@ -17,6 +17,7 @@ const App = () => {
                     }
                 >
                     <Route index element={<Stats />} />
+                    <Route path='jobs' element={<Jobs />} />
                     <Route path='profile' element={<Profile />} />
                 </Route>
                 <Route path='login' element={<AuthPage />} />
