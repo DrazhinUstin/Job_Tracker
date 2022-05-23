@@ -1,16 +1,22 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getJobs } from '../../features/jobs/jobsSlice';
-import { JobsContainer } from '../../components';
+import { JobsContainer, Pagination } from '../../components';
 
 const Jobs = () => {
+    const { page } = useSelector((state) => state.jobs);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getJobs());
-    }, []);
+    }, [page]);
 
-    return <JobsContainer />;
+    return (
+        <>
+            <JobsContainer />
+            <Pagination />
+        </>
+    );
 };
 
 export default Jobs;

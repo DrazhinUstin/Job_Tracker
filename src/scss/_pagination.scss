@@ -1,0 +1,25 @@
+.pagination {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: right;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    .btn {
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        column-gap: 0.25rem;
+    }
+    button:not(.btn) {
+        width: 2.5rem;
+        height: 2.5rem;
+        border: 1px solid $black;
+        border-radius: $radius;
+        background-color: transparent;
+        &.active {
+            background-color: $black;
+            color: $white;
+        }
+    }
+}
