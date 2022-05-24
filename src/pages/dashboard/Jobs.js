@@ -1,20 +1,27 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getJobs } from '../../features/jobs/jobsSlice';
-import { JobsContainer, Pagination } from '../../components';
+import { Filters, JobsContainer, Pagination } from '../../components';
 
 const Jobs = () => {
-    const { page } = useSelector((state) => state.jobs);
+    const { isLoading, filters, page } = useSelector((state) => state.jobs);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getJobs());
-    }, [page]);
+    }, [filters, page]);
 
     return (
         <>
-            <JobsContainer />
-            <Pagination />
+            <Filters />
+            {isLoading ? (
+                <h2>loading...</h2>
+            ) : (
+                <>
+                    <JobsContainer />
+                    <Pagination />
+                </>
+            )}
         </>
     );
 };

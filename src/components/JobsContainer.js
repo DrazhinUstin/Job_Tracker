@@ -8,7 +8,7 @@ const JobsContainer = () => {
     return (
         <section className='jobs-container'>
             <h4>
-                {totalJobs} Job{totalJobs > 1 && 's'} Found
+                {totalJobs} Job{totalJobs !== 1 && 's'} Found
             </h4>
             <div className='jobs'>
                 {jobs.map(({ _id, company, position, status, jobType, jobLocation, createdAt }) => {
