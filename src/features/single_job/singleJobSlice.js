@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import axiosInstance from '../../utils/axios';
 import { getStorageItem } from '../../utils/storage';
+import { showLoading, getJobs, hideLoading } from '../jobs/jobsSlice';
 
 const defaultJob = {
     jobId: null,
@@ -34,6 +35,18 @@ export const editJob = createAsyncThunk('singleJob/editJob', async ({ jobId, job
         const response = await axiosInstance.patch(`/jobs/${jobId}`, job);
         return response.data;
     } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+});
+
+export const deleteJob = createAsyncThunk('singleJob/deleteJob', async (jobId, thunkAPI) => {
+    try {
+        thunkAPI.dispatch(showLoading());
+        const response = await axiosInstance.delete(`/jobs/${jobId}`);
+        thunkAPI.dispatch(getJobs());
+        return response.data.msg;
+    } catch (error) {
+        thunkAPI.dispatch(hideLoading());
         return thunkAPI.rejectWithValue(error.response.data.msg);
     }
 });
@@ -73,6 +86,12 @@ const singleJobSlice = createSlice({
         },
         [editJob.rejected]: (state, { payload }) => {
             state.isLoading = false;
+            toast.error(payload);
+        },
+        [deleteJob.fulfilled]: (_, { payload }) => {
+            toast.success(payload);
+        },
+        [deleteJob.rejected]: (_, { payload }) => {
             toast.error(payload);
         },
     },

@@ -53,6 +53,12 @@ const jobsSlice = createSlice({
     name: 'jobs',
     initialState,
     reducers: {
+        showLoading(state) {
+            state.isLoading = true;
+        },
+        hideLoading(state) {
+            state.isLoading = false;
+        },
         updateFilters(state, { payload: { name, value } }) {
             state.filters[name] = value;
             state.page = 1;
@@ -90,5 +96,6 @@ const jobsSlice = createSlice({
     },
 });
 
-export const { updateFilters, restoreInitialFilters, switchPage } = jobsSlice.actions;
+export const { showLoading, hideLoading, updateFilters, restoreInitialFilters, switchPage } =
+    jobsSlice.actions;
 export default jobsSlice.reducer;

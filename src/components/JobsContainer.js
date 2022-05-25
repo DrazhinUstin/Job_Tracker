@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaLocationArrow, FaCalendarAlt, FaBriefcase } from 'react-icons/fa';
 import { formatDate } from '../utils/helpers';
-import { prepareJobEditing } from '../features/single_job/singleJobSlice';
+import { prepareJobEditing, deleteJob } from '../features/single_job/singleJobSlice';
 
 const JobsContainer = () => {
     const { jobs, totalJobs } = useSelector((state) => state.jobs);
@@ -57,7 +57,9 @@ const JobsContainer = () => {
                                 >
                                     edit
                                 </Link>
-                                <button className='btn'>delete</button>
+                                <button className='btn' onClick={() => dispatch(deleteJob(_id))}>
+                                    delete
+                                </button>
                             </footer>
                         </article>
                     );
