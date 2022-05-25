@@ -4,6 +4,7 @@ import axiosInstance from '../../utils/axios';
 import { getStorageItem } from '../../utils/storage';
 
 const defaultJob = {
+    jobId: null,
     position: '',
     company: '',
     jobLocation: getStorageItem('user')?.location || '',
@@ -15,12 +16,22 @@ const defaultJob = {
 
 const initialState = {
     isLoading: false,
+    isEditing: false,
     ...defaultJob,
 };
 
 export const addJob = createAsyncThunk('singleJob/addJob', async (job, thunkAPI) => {
     try {
         const response = await axiosInstance.post('/jobs', job);
+        return response.data;
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error.response.data.msg);
+    }
+});
+
+export const editJob = createAsyncThunk('singleJob/editJob', async ({ jobId, job }, thunkAPI) => {
+    try {
+        const response = await axiosInstance.patch(`/jobs/${jobId}`, job);
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -35,7 +46,10 @@ const singleJobSlice = createSlice({
             state[name] = value;
         },
         restoreDefaultJob(state) {
-            return { ...state, ...defaultJob };
+            return { ...state, isEditing: false, ...defaultJob };
+        },
+        prepareJobEditing(state, { payload }) {
+            return { ...state, isEditing: true, ...payload };
         },
     },
     extraReducers: {
@@ -50,8 +64,19 @@ const singleJobSlice = createSlice({
             state.isLoading = false;
             toast.error(payload);
         },
+        [editJob.pending]: (state) => {
+            state.isLoading = true;
+        },
+        [editJob.fulfilled]: (state) => {
+            state.isLoading = false;
+            toast.success('job edited');
+        },
+        [editJob.rejected]: (state, { payload }) => {
+            state.isLoading = false;
+            toast.error(payload);
+        },
     },
 });
 
-export const { updateJob, restoreDefaultJob } = singleJobSlice.actions;
+export const { updateJob, restoreDefaultJob, prepareJobEditing } = singleJobSlice.actions;
 export default singleJobSlice.reducer;

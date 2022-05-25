@@ -1,10 +1,12 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { FaLocationArrow, FaCalendarAlt, FaBriefcase } from 'react-icons/fa';
 import { formatDate } from '../utils/helpers';
+import { prepareJobEditing } from '../features/single_job/singleJobSlice';
 
 const JobsContainer = () => {
     const { jobs, totalJobs } = useSelector((state) => state.jobs);
-
+    const dispatch = useDispatch();
     return (
         <section className='jobs-container'>
             <h4>
@@ -37,7 +39,24 @@ const JobsContainer = () => {
                                 <div>{status}</div>
                             </div>
                             <footer className='jobs-item-footer'>
-                                <button className='btn'>edit</button>
+                                <Link
+                                    to='/dashboard/add_job'
+                                    className='btn'
+                                    onClick={() =>
+                                        dispatch(
+                                            prepareJobEditing({
+                                                jobId: _id,
+                                                company,
+                                                position,
+                                                status,
+                                                jobType,
+                                                jobLocation,
+                                            })
+                                        )
+                                    }
+                                >
+                                    edit
+                                </Link>
                                 <button className='btn'>delete</button>
                             </footer>
                         </article>

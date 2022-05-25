@@ -1,11 +1,18 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { FormField } from '../../components';
-import { updateJob, addJob, restoreDefaultJob } from '../../features/single_job/singleJobSlice';
+import {
+    updateJob,
+    addJob,
+    editJob,
+    restoreDefaultJob,
+} from '../../features/single_job/singleJobSlice';
 
 const AddJob = () => {
     const {
         isLoading,
+        isEditing,
+        jobId,
         position,
         company,
         jobLocation,
@@ -26,6 +33,11 @@ const AddJob = () => {
         e.preventDefault();
         if (!position || !company || !jobLocation) {
             toast.error('please fill out all fields');
+            return;
+        }
+        if (isEditing) {
+            dispatch(editJob({ jobId, job: { position, company, jobLocation, status, jobType } }));
+            dispatch(restoreDefaultJob());
         } else {
             dispatch(addJob({ position, company, jobLocation, status, jobType }));
             dispatch(restoreDefaultJob());
@@ -34,7 +46,7 @@ const AddJob = () => {
 
     return (
         <form className='form' onSubmit={handleSubmit}>
-            <h2 className='form-header'>add job</h2>
+            <h2 className='form-header'>{isEditing ? 'edit job' : 'add job'}</h2>
             <FormField type='text' name='position' value={position} onChange={handleChange} />
             <FormField type='text' name='company' value={company} onChange={handleChange} />
             <FormField
