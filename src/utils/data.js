@@ -1,4 +1,39 @@
-import { FaBusinessTime, FaCalendarCheck, FaCalendarTimes } from 'react-icons/fa';
+import {
+    FaChartLine,
+    FaBriefcase,
+    FaBriefcaseMedical,
+    FaAddressCard,
+    FaBusinessTime,
+    FaCalendarCheck,
+    FaCalendarTimes,
+} from 'react-icons/fa';
+
+const navLinksData = [
+    {
+        id: 1,
+        title: 'stats',
+        icon: <FaChartLine />,
+        path: '',
+    },
+    {
+        id: 2,
+        title: 'jobs',
+        icon: <FaBriefcase />,
+        path: 'jobs',
+    },
+    {
+        id: 3,
+        title: 'add job',
+        icon: <FaBriefcaseMedical />,
+        path: 'add_job',
+    },
+    {
+        id: 4,
+        title: 'profile',
+        icon: <FaAddressCard />,
+        path: 'profile',
+    },
+];
 
 const statsData = [
     {
@@ -21,4 +56,4 @@ const statsData = [
     },
 ];
 
-export { statsData };
+export { navLinksData, statsData };

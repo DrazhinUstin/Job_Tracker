@@ -1,11 +1,31 @@
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { FaAlignJustify } from 'react-icons/fa';
+import { Sidebar, AuthBtn } from '../../components';
 
 const DashboardPage = () => {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     return (
-        <>
-            <h1>Dashboard</h1>
-            <Outlet />
-        </>
+        <main className='dashboard'>
+            <Sidebar {...{ isSidebarOpen, setIsSidebarOpen }} />
+            <div>
+                <header className='dashboard-header'>
+                    <div className='section-center'>
+                        <button
+                            className={isSidebarOpen ? 'active' : null}
+                            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                        >
+                            <FaAlignJustify />
+                        </button>
+                        <h2>dashboard</h2>
+                        <AuthBtn />
+                    </div>
+                </header>
+                <div className='section section-center'>
+                    <Outlet />
+                </div>
+            </div>
+        </main>
     );
 };
 

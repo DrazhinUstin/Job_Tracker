@@ -1,0 +1,71 @@
+.sidebar {
+    position: sticky;
+    top: 0;
+    width: 200px;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    margin-left: -200px;
+    background-color: $white;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transition: $trans-ease;
+    transition-property: margin, transform;
+    z-index: 99;
+    &.open {
+        margin-left: 0;
+        transform: translateX(0);
+        .sidebar-close-btn {
+            transform: scale(1);
+        }
+    }
+    &-close-btn {
+        position: absolute;
+        top: 1rem;
+        right: -1rem;
+        width: 2rem;
+        height: 2rem;
+        @include grid-center;
+        border: none;
+        border-radius: 50%;
+        background-color: $red;
+        color: $white;
+        box-shadow: inherit;
+        font-size: 1.25rem;
+        transform: scale(0);
+        transition: $trans-ease;
+        transition-property: transform;
+    }
+    &-header {
+        height: 5rem;
+        @include grid-center;
+        margin-bottom: 2rem;
+    }
+    &-menu {
+        justify-self: center;
+        a {
+            display: flex;
+            align-items: center;
+            column-gap: 1rem;
+            font-size: 1.2rem;
+            text-transform: capitalize;
+            svg {
+                font-size: 1.5rem;
+            }
+            &:not(:last-child) {
+                margin-bottom: 1rem;
+            }
+            &.active {
+                color: $red;
+            }
+        }
+    }
+    @media screen and (max-width: 768px) {
+        position: fixed;
+        width: 100%;
+        margin-left: 0;
+        transform: translateX(-100%);
+        &-close-btn {
+            right: 1rem;
+        }
+    }
+}

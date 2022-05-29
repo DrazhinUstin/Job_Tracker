@@ -1,0 +1,32 @@
+.dashboard {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: flex-start;
+    @media screen and (max-width: 768px) {
+        grid-template-columns: unset;
+    }
+    &-header {
+        position: sticky;
+        top: 0;
+        background-color: $white;
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        & > div {
+            height: 5rem;
+            @include flex-between;
+            & > button:first-of-type {
+                border: none;
+                background-color: transparent;
+                font-size: 1.5rem;
+                transition: $trans-ease;
+                &.active {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+    }
+    .section-center {
+        max-width: unset;
+        width: 90%;
+    }
+}

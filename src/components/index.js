@@ -1,4 +1,5 @@
 import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 import AuthBtn from './AuthBtn';
 import FormField from './FormField';
 import StatsContainer from './StatsContainer';
@@ -9,6 +10,7 @@ import Pagination from './Pagination';
 
 export {
     Navbar,
+    Sidebar,
     AuthBtn,
     FormField,
     StatsContainer,
