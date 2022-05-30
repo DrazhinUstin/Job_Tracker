@@ -7,21 +7,24 @@
     display: flex;
     align-items: center;
     column-gap: 0.5rem;
+    svg:last-of-type {
+        transition: $trans-ease-in-out;
+    }
     &.active {
-        & ~ button {
-            display: inline-block;
-        }
         svg:last-of-type {
             transform: rotate(180deg);
+        }
+        & ~ button {
+            transform: translateY(100%) scale(1);
         }
     }
     & ~ button {
         position: absolute;
         bottom: -0.5rem;
         left: 0;
-        transform: translateY(100%);
+        transform: translateY(100%) scale(0);
         width: 100%;
-        display: none;
         background-color: $red;
+        transition: $trans-ease-in-out;
     }
 }

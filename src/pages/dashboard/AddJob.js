@@ -45,37 +45,43 @@ const AddJob = () => {
     };
 
     return (
-        <form className='form' onSubmit={handleSubmit}>
+        <form className='form section section-center' onSubmit={handleSubmit}>
             <h2 className='form-header'>{isEditing ? 'edit job' : 'add job'}</h2>
-            <FormField type='text' name='position' value={position} onChange={handleChange} />
-            <FormField type='text' name='company' value={company} onChange={handleChange} />
-            <FormField
-                label='location'
-                type='text'
-                name='jobLocation'
-                value={jobLocation}
-                onChange={handleChange}
-            />
-            <FormField
-                name='status'
-                value={status}
-                onChange={handleChange}
-                options={statusOptions}
-            />
-            <FormField
-                label='type'
-                name='jobType'
-                value={jobType}
-                onChange={handleChange}
-                options={jobTypeOptions}
-            />
-            <div>
-                <button type='button' className='btn' onClick={() => dispatch(restoreDefaultJob())}>
-                    clear
-                </button>
-                <button type='submit' className='btn' disabled={isLoading}>
-                    {isLoading ? 'loading...' : 'submit'}
-                </button>
+            <div className='form-grid'>
+                <FormField type='text' name='position' value={position} onChange={handleChange} />
+                <FormField type='text' name='company' value={company} onChange={handleChange} />
+                <FormField
+                    label='location'
+                    type='text'
+                    name='jobLocation'
+                    value={jobLocation}
+                    onChange={handleChange}
+                />
+                <FormField
+                    name='status'
+                    value={status}
+                    onChange={handleChange}
+                    options={statusOptions}
+                />
+                <FormField
+                    label='type'
+                    name='jobType'
+                    value={jobType}
+                    onChange={handleChange}
+                    options={jobTypeOptions}
+                />
+                <div className='btn-container'>
+                    <button
+                        type='button'
+                        className='btn-block'
+                        onClick={() => dispatch(restoreDefaultJob())}
+                    >
+                        clear
+                    </button>
+                    <button type='submit' className='btn-block' disabled={isLoading}>
+                        {isLoading ? 'loading...' : 'submit'}
+                    </button>
+                </div>
             </div>
         </form>
     );

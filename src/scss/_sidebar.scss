@@ -36,7 +36,7 @@
         transition-property: transform;
     }
     &-header {
-        height: 5rem;
+        height: $header-height;
         @include grid-center;
         margin-bottom: 2rem;
     }

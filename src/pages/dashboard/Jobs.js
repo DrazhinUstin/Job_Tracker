@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getJobs } from '../../features/jobs/jobsSlice';
-import { Filters, JobsContainer, Pagination } from '../../components';
+import { Filters, JobsContainer, Pagination, Loading } from '../../components';
 
 const Jobs = () => {
     const { isLoading, filters, page } = useSelector((state) => state.jobs);
@@ -12,17 +12,17 @@ const Jobs = () => {
     }, [filters, page]);
 
     return (
-        <>
+        <div className='section section-center'>
             <Filters />
             {isLoading ? (
-                <h2>loading...</h2>
+                <Loading />
             ) : (
                 <>
                     <JobsContainer />
                     <Pagination />
                 </>
             )}
-        </>
+        </div>
     );
 };
 

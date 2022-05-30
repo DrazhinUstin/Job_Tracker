@@ -12,7 +12,7 @@
         background-color: $white;
         box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
         & > div {
-            height: 5rem;
+            height: $header-height;
             @include flex-between;
             & > button:first-of-type {
                 border: none;

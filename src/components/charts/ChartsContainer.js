@@ -12,12 +12,12 @@ const ChartsContainer = () => {
     }
 
     return (
-        <section>
+        <section className='charts-container'>
             <h2>Monthly Applications</h2>
             <button className='text-link' onClick={() => setIsBarChart(!isBarChart)}>
                 {isBarChart ? 'area chart' : 'bar chart'}
             </button>
-            <div className='charts-container'>
+            <div className='charts'>
                 {isBarChart ? (
                     <BarChart data={monthlyApplications} />
                 ) : (

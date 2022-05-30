@@ -21,9 +21,7 @@ const DashboardPage = () => {
                         <AuthBtn />
                     </div>
                 </header>
-                <div className='section section-center'>
-                    <Outlet />
-                </div>
+                <Outlet />
             </div>
         </main>
     );

@@ -1,3 +1,10 @@
+.jobs-container {
+    margin-top: 4rem;
+    & > h4 {
+        margin-bottom: 2rem;
+    }
+}
+
 .jobs {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

@@ -31,26 +31,38 @@ const Profile = () => {
     };
 
     return (
-        <form className='form' onSubmit={handleSubmit}>
+        <form className='form section section-center' onSubmit={handleSubmit}>
             <h2 className='form-header'>Profile</h2>
-            <FormField type='text' name='name' value={formValues.name} onChange={handleChange} />
-            <FormField
-                label='last name'
-                type='text'
-                name='lastName'
-                value={formValues.lastName}
-                onChange={handleChange}
-            />
-            <FormField type='email' name='email' value={formValues.email} onChange={handleChange} />
-            <FormField
-                type='text'
-                name='location'
-                value={formValues.location}
-                onChange={handleChange}
-            />
-            <button type='submit' className='btn-block' disabled={isLoading}>
-                {isLoading ? 'loading...' : 'save changes'}
-            </button>
+            <div className='form-grid'>
+                <FormField
+                    type='text'
+                    name='name'
+                    value={formValues.name}
+                    onChange={handleChange}
+                />
+                <FormField
+                    label='last name'
+                    type='text'
+                    name='lastName'
+                    value={formValues.lastName}
+                    onChange={handleChange}
+                />
+                <FormField
+                    type='email'
+                    name='email'
+                    value={formValues.email}
+                    onChange={handleChange}
+                />
+                <FormField
+                    type='text'
+                    name='location'
+                    value={formValues.location}
+                    onChange={handleChange}
+                />
+                <button type='submit' className='btn-block' disabled={isLoading}>
+                    {isLoading ? 'loading...' : 'save changes'}
+                </button>
+            </div>
         </form>
     );
 };

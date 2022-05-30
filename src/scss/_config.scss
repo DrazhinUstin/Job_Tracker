@@ -2,9 +2,11 @@ $black: rgb(15, 15, 15);
 $white: rgb(255, 255, 255);
 $gray: rgb(176, 176, 176);
 $red: rgb(198, 66, 66);
+$header-height: 5rem;
 $spacing: 0.1rem;
 $radius: 0.25rem;
 $trans-ease: all 0.4s ease;
+$trans-ease-in-out: all 0.25s ease-in-out;
 
 @mixin grid-center {
     display: grid;

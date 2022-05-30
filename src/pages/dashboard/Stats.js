@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getStats } from '../../features/jobs/jobsSlice';
-import { StatsContainer, ChartsContainer } from '../../components';
+import { Loading, StatsContainer, ChartsContainer } from '../../components';
 
 const Stats = () => {
     const { isLoading } = useSelector((state) => state.jobs);
@@ -12,14 +12,14 @@ const Stats = () => {
     }, []);
 
     if (isLoading) {
-        return <h2>loading</h2>;
+        return <Loading container />;
     }
 
     return (
-        <>
+        <div className='section section-center'>
             <StatsContainer />
             <ChartsContainer />
-        </>
+        </div>
     );
 };
 
