@@ -18,16 +18,15 @@
         box-shadow: $shadow;
         background-color: $white;
         &-header {
-            display: flex;
-            align-items: center;
+            display: grid;
+            grid-template-columns: auto 1fr;
             column-gap: 2rem;
+            align-items: center;
             padding: 1rem 2rem;
             border-bottom: 1px solid $gray;
             div:first-child {
-                width: 3rem;
-                height: 3rem;
+                @include circle(3rem);
                 @include grid-center;
-                border-radius: 50%;
                 background-color: $clr-primary-2;
                 color: $white;
                 font-size: 1.2rem;
@@ -42,6 +41,9 @@
                 display: flex;
                 align-items: center;
                 column-gap: 1rem;
+                svg {
+                    color: $clr-primary-3;
+                }
             }
             div:last-child {
                 justify-self: flex-start;
@@ -58,9 +60,6 @@
                     border-color: $red;
                     color: $red;
                 }
-            }
-            svg {
-                color: $clr-primary-3;
             }
         }
         &-footer {

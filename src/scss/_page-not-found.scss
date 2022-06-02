@@ -1,0 +1,25 @@
+.page-not-found {
+    @extend .section;
+    @extend .section-center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    text-align: center;
+    @media screen and (max-width: 1024px) {
+        grid-template-columns: unset;
+    }
+    img {
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+    }
+    h1 {
+        margin-bottom: 1rem;
+        font-size: 2.5rem;
+    }
+    p {
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+}

@@ -24,3 +24,9 @@ $trans-ease-in-out: all 0.25s ease-in-out;
     justify-content: space-between;
     align-items: center;
 }
+
+@mixin circle($diameter) {
+    width: $diameter;
+    height: $diameter;
+    border-radius: 50%;
+}

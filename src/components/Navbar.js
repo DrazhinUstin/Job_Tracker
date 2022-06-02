@@ -1,5 +1,4 @@
-import AuthBtn from './AuthBtn';
-import { ReactComponent as Logo } from '../assets/logo.svg';
+import { Logo, AuthBtn } from './';
 
 const Navbar = () => {
     return (

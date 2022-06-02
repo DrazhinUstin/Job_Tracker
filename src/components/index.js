@@ -1,7 +1,7 @@
-import Navbar from './Navbar';
-import Sidebar from './Sidebar';
+import Logo from './Logo';
 import AuthBtn from './AuthBtn';
 import FormField from './FormField';
+import Sidebar from './Sidebar';
 import Loading from './Loading';
 import StatsContainer from './StatsContainer';
 import ChartsContainer from './charts/ChartsContainer';
@@ -10,10 +10,10 @@ import JobsContainer from './JobsContainer';
 import Pagination from './Pagination';
 
 export {
-    Navbar,
-    Sidebar,
+    Logo,
     AuthBtn,
     FormField,
+    Sidebar,
     Loading,
     StatsContainer,
     ChartsContainer,

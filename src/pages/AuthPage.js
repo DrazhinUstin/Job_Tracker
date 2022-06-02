@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { FormField } from '../components';
+import { Logo, FormField } from '../components';
 import { loginUser } from '../features/user/userSlice';
 
 const AuthPage = () => {
@@ -45,6 +45,7 @@ const AuthPage = () => {
     return (
         <section className='min-100 grid-center'>
             <form className='auth-form' onSubmit={handleSubmit}>
+                <Logo style={{ margin: '0 auto 1rem' }} />
                 <h2 className='form-header'>{isLoginForm ? 'log in' : 'sign up'}</h2>
                 {!isLoginForm && (
                     <FormField

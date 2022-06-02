@@ -1,6 +1,6 @@
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
-import { ReactComponent as Logo } from '../assets/logo_dark.svg';
+import { Logo } from './';
 import { navLinksData as navLinks } from '../utils/data';
 
 const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
@@ -17,9 +17,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
                 <FaTimes />
             </button>
             <header className='sidebar-header'>
-                <Link to={'/'}>
-                    <Logo />
-                </Link>
+                <Logo dark />
             </header>
             <nav className='sidebar-menu'>
                 {navLinks.map(({ id, title, icon, path }) => {

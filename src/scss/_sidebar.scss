@@ -22,11 +22,9 @@
         position: absolute;
         top: 1rem;
         right: -1rem;
-        width: 2rem;
-        height: 2rem;
+        @include circle(2rem);
         @include grid-center;
         border: none;
-        border-radius: 50%;
         background-color: $red;
         color: $white;
         box-shadow: inherit;
@@ -67,6 +65,9 @@
         transform: translateX(-100%);
         &-close-btn {
             right: 1rem;
+        }
+        &-header {
+            margin-top: 2rem;
         }
     }
 }
