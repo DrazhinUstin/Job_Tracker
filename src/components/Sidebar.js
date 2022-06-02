@@ -1,5 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import { FaTimes } from 'react-icons/fa';
+import { ReactComponent as Logo } from '../assets/logo_dark.svg';
 import { navLinksData as navLinks } from '../utils/data';
 
 const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
@@ -17,7 +18,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             </button>
             <header className='sidebar-header'>
                 <Link to={'/'}>
-                    <h2>job tracker</h2>
+                    <Logo />
                 </Link>
             </header>
             <nav className='sidebar-menu'>

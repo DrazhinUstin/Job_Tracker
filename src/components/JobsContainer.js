@@ -36,12 +36,12 @@ const JobsContainer = () => {
                                     <FaBriefcase />
                                     {jobType}
                                 </div>
-                                <div>{status}</div>
+                                <div className={status}>{status}</div>
                             </div>
                             <footer className='jobs-item-footer'>
                                 <Link
                                     to='/dashboard/add_job'
-                                    className='btn'
+                                    className='btn yellow'
                                     onClick={() =>
                                         dispatch(
                                             prepareJobEditing({
@@ -57,7 +57,10 @@ const JobsContainer = () => {
                                 >
                                     edit
                                 </Link>
-                                <button className='btn' onClick={() => dispatch(deleteJob(_id))}>
+                                <button
+                                    className='btn red'
+                                    onClick={() => dispatch(deleteJob(_id))}
+                                >
                                     delete
                                 </button>
                             </footer>

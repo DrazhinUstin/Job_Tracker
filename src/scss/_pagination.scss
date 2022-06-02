@@ -14,11 +14,11 @@
     button:not(.btn) {
         width: 2.5rem;
         height: 2.5rem;
-        border: 1px solid $black;
+        border: 1px solid $clr-primary-2;
         border-radius: $radius;
         background-color: transparent;
         &.active {
-            background-color: $black;
+            background-color: $clr-primary-2;
             color: $white;
         }
     }

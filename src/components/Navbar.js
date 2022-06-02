@@ -1,10 +1,11 @@
 import AuthBtn from './AuthBtn';
+import { ReactComponent as Logo } from '../assets/logo.svg';
 
 const Navbar = () => {
     return (
         <nav className='navbar'>
             <div className='section-center'>
-                <h2>job tracker</h2>
+                <Logo />
                 <AuthBtn />
             </div>
         </nav>

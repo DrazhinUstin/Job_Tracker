@@ -43,7 +43,7 @@ const Filters = () => {
                 />
                 <button
                     type='button'
-                    className='btn'
+                    className='btn red'
                     disabled={isLoading}
                     onClick={() => dispatch(restoreInitialFilters())}
                 >

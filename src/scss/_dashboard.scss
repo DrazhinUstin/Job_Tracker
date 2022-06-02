@@ -9,14 +9,15 @@
     &-header {
         position: sticky;
         top: 0;
-        background-color: $white;
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        box-shadow: $shadow;
+        background-color: $clr-primary;
         & > div {
             height: $header-height;
             @include flex-between;
             & > button:first-of-type {
                 border: none;
                 background-color: transparent;
+                color: $clr-primary-2;
                 font-size: 1.5rem;
                 transition: $trans-ease;
                 &.active {

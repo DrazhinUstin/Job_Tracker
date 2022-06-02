@@ -71,7 +71,7 @@ const AuthPage = () => {
                 </button>
                 <button
                     type='button'
-                    className='btn-block'
+                    className='btn-block red'
                     disabled={isLoading}
                     onClick={() =>
                         dispatch(loginUser({ email: 'testUser@test.com', password: 'secret' }))

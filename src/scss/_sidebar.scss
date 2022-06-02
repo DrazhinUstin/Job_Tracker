@@ -6,8 +6,8 @@
     display: grid;
     grid-template-rows: auto 1fr;
     margin-left: -200px;
+    box-shadow: $shadow;
     background-color: $white;
-    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     transition: $trans-ease;
     transition-property: margin, transform;
     z-index: 99;
@@ -46,6 +46,7 @@
             display: flex;
             align-items: center;
             column-gap: 1rem;
+            color: $clr-primary-3;
             font-size: 1.2rem;
             text-transform: capitalize;
             svg {

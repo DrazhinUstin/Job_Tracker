@@ -73,7 +73,7 @@ const AddJob = () => {
                 <div className='btn-container'>
                     <button
                         type='button'
-                        className='btn-block'
+                        className='btn-block red'
                         onClick={() => dispatch(restoreDefaultJob())}
                     >
                         clear

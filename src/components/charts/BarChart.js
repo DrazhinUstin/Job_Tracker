@@ -8,7 +8,7 @@ const BarChartComponent = ({ data }) => {
                 <XAxis dataKey='date' />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey='count' fill='#8884d8' maxBarSize={100} />
+                <Bar dataKey='count' fill='#746fd4' maxBarSize={100} />
             </BarChart>
         </ResponsiveContainer>
     );

@@ -1,5 +1,5 @@
 .hero {
-    min-height: calc(100vh - 5rem);
+    min-height: calc(100vh - $header-height);
     @include grid-center;
     h1 {
         margin-bottom: 1rem;
