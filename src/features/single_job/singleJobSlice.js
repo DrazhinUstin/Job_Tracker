@@ -1,14 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import axiosInstance from '../../utils/axios';
-import { getStorageItem } from '../../utils/storage';
 import { showLoading, getJobs, hideLoading } from '../jobs/jobsSlice';
 
 const defaultJob = {
     jobId: null,
     position: '',
     company: '',
-    jobLocation: getStorageItem('user')?.location || '',
+    jobLocation: '',
     status: 'pending',
     statusOptions: ['pending', 'interview', 'declined'],
     jobType: 'full-time',
@@ -24,6 +23,7 @@ const initialState = {
 export const addJob = createAsyncThunk('singleJob/addJob', async (job, thunkAPI) => {
     try {
         const response = await axiosInstance.post('/jobs', job);
+        thunkAPI.dispatch(restoreDefaultJob());
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -33,6 +33,7 @@ export const addJob = createAsyncThunk('singleJob/addJob', async (job, thunkAPI)
 export const editJob = createAsyncThunk('singleJob/editJob', async ({ jobId, job }, thunkAPI) => {
     try {
         const response = await axiosInstance.patch(`/jobs/${jobId}`, job);
+        thunkAPI.dispatch(restoreDefaultJob());
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data.msg);

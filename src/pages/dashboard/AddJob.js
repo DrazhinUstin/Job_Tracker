@@ -37,10 +37,8 @@ const AddJob = () => {
         }
         if (isEditing) {
             dispatch(editJob({ jobId, job: { position, company, jobLocation, status, jobType } }));
-            dispatch(restoreDefaultJob());
         } else {
             dispatch(addJob({ position, company, jobLocation, status, jobType }));
-            dispatch(restoreDefaultJob());
         }
     };
 
