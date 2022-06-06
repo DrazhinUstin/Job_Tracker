@@ -4,6 +4,7 @@
 @import 'dashboard';
 @import 'sidebar';
 @import 'stats';
+@import 'charts';
 @import 'jobs';
 @import 'pagination';
 @import 'page-not-found';
@@ -97,8 +98,8 @@ button {
 }
 
 .btn-container {
-    @include flex-between;
-    column-gap: 0.5rem;
+    display: flex;
+    column-gap: 1rem;
 }
 
 .btn {
@@ -122,6 +123,13 @@ button {
     @extend .btn;
     width: 100%;
     display: block;
+}
+
+.btn-flex {
+    @extend .btn;
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
 }
 
 @import 'auth-btn';
@@ -171,10 +179,10 @@ button {
         .form-field {
             margin-bottom: unset;
         }
-        @media screen and (max-width: 1024px) {
+        @include for-size(lg) {
             grid-template-columns: 1fr 1fr;
         }
-        @media screen and (max-width: 768px) {
+        @include for-size(md) {
             grid-template-columns: unset;
         }
     }
@@ -196,17 +204,8 @@ button {
     }
 }
 
-.charts-container {
-    margin-top: 4rem;
-    text-align: center;
-    & > button {
-        margin: 2rem 0;
-        font-size: 1.2rem;
-    }
-}
-
-.charts {
-    height: 400px;
+.black {
+    background-color: $black;
 }
 
 .red {

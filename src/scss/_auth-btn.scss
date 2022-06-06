@@ -3,10 +3,7 @@
 }
 
 .auth-btn {
-    @extend .btn;
-    display: flex;
-    align-items: center;
-    column-gap: 0.5rem;
+    @extend .btn-flex;
     svg:last-of-type {
         transition: $trans-ease-in-out;
     }
@@ -19,9 +16,7 @@
         }
     }
     & ~ button {
-        position: absolute;
-        bottom: -0.5rem;
-        left: 0;
+        @include absolute($bottom: -0.5rem, $left: 0);
         transform: translateY(100%) scale(0);
         width: 100%;
         background-color: $red;

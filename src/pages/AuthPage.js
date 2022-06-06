@@ -19,7 +19,7 @@ const AuthPage = () => {
     useEffect(() => {
         if (user) {
             navigate('/dashboard');
-        }
+        } // eslint-disable-next-line
     }, [user]);
 
     const handleChange = (e) => {

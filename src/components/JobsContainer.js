@@ -23,47 +23,49 @@ const JobsContainer = () => {
                                     <p>{company}</p>
                                 </div>
                             </header>
-                            <div className='jobs-item-content'>
-                                <div>
-                                    <FaLocationArrow />
-                                    {jobLocation}
+                            <div>
+                                <div className='jobs-item-content'>
+                                    <p>
+                                        <FaLocationArrow />
+                                        {jobLocation}
+                                    </p>
+                                    <p>
+                                        <FaCalendarAlt />
+                                        {formatDate(createdAt)}
+                                    </p>
+                                    <p>
+                                        <FaBriefcase />
+                                        {jobType}
+                                    </p>
+                                    <p className={status}>{status}</p>
                                 </div>
-                                <div>
-                                    <FaCalendarAlt />
-                                    {formatDate(createdAt)}
-                                </div>
-                                <div>
-                                    <FaBriefcase />
-                                    {jobType}
-                                </div>
-                                <div className={status}>{status}</div>
+                                <footer className='btn-container'>
+                                    <Link
+                                        to='/dashboard/add_job'
+                                        className='btn yellow'
+                                        onClick={() =>
+                                            dispatch(
+                                                prepareJobEditing({
+                                                    jobId: _id,
+                                                    company,
+                                                    position,
+                                                    status,
+                                                    jobType,
+                                                    jobLocation,
+                                                })
+                                            )
+                                        }
+                                    >
+                                        edit
+                                    </Link>
+                                    <button
+                                        className='btn red'
+                                        onClick={() => dispatch(deleteJob(_id))}
+                                    >
+                                        delete
+                                    </button>
+                                </footer>
                             </div>
-                            <footer className='jobs-item-footer'>
-                                <Link
-                                    to='/dashboard/add_job'
-                                    className='btn yellow'
-                                    onClick={() =>
-                                        dispatch(
-                                            prepareJobEditing({
-                                                jobId: _id,
-                                                company,
-                                                position,
-                                                status,
-                                                jobType,
-                                                jobLocation,
-                                            })
-                                        )
-                                    }
-                                >
-                                    edit
-                                </Link>
-                                <button
-                                    className='btn red'
-                                    onClick={() => dispatch(deleteJob(_id))}
-                                >
-                                    delete
-                                </button>
-                            </footer>
                         </article>
                     );
                 })}

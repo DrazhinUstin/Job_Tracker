@@ -25,8 +25,46 @@ $trans-ease-in-out: all 0.25s ease-in-out;
     align-items: center;
 }
 
+@mixin position($pos, $top: null, $right: null, $bottom: null, $left: null) {
+    position: $pos;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+}
+
+@mixin absolute($args...) {
+    @include position(absolute, $args...);
+}
+
+@mixin sticky($args...) {
+    @include position(sticky, $args...);
+}
+
 @mixin circle($diameter) {
     width: $diameter;
     height: $diameter;
     border-radius: 50%;
+}
+
+$sizes: (
+    xs: '(max-width: 400px)',
+    sm: '(max-width: 640px)',
+    md: '(max-width: 768px)',
+    lg: '(max-width: 1024px)',
+);
+
+@mixin for-size($size) {
+    // If the key exists in the map
+    @if map-has-key($sizes, $size) {
+        // Prints a media query based on the value
+        @media screen and #{map-get($sizes, $size)} {
+            @content;
+        }
+    }
+    // If the key doesn't exist in the map
+    @else {
+        @warn "Warning: no value could be retrieved from `#{$size}`. "
+        + "Available sizes are: #{map-keys($sizes)}.";
+    }
 }

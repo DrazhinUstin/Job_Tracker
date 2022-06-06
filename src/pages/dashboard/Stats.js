@@ -8,7 +8,7 @@ const Stats = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getStats());
+        dispatch(getStats()); // eslint-disable-next-line
     }, []);
 
     if (isLoading) {

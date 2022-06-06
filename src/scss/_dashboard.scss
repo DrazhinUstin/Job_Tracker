@@ -3,12 +3,11 @@
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: flex-start;
-    @media screen and (max-width: 768px) {
+    @include for-size(md) {
         grid-template-columns: unset;
     }
     &-header {
-        position: sticky;
-        top: 0;
+        @include sticky($top: 0);
         box-shadow: $shadow;
         background-color: $clr-primary;
         & > div {
@@ -23,6 +22,11 @@
                 &.active {
                     transform: rotate(90deg);
                 }
+            }
+        }
+        @include for-size(xs) {
+            h2 {
+                display: none;
             }
         }
     }

@@ -1,0 +1,15 @@
+.charts-container {
+    margin-top: 4rem;
+    text-align: center;
+    & > button {
+        margin: 2rem 0;
+        font-size: 1.2rem;
+    }
+}
+
+.charts {
+    height: 400px;
+    @include for-size(sm) {
+        height: 300px;
+    }
+}

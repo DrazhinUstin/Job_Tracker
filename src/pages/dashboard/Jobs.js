@@ -8,7 +8,7 @@ const Jobs = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getJobs());
+        dispatch(getJobs()); // eslint-disable-next-line
     }, [filters, page]);
 
     return (

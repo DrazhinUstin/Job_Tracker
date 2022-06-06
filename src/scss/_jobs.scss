@@ -10,7 +10,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    @media screen and (max-width: 1024px) {
+    @include for-size(lg) {
         grid-template-columns: unset;
     }
     &-item {
@@ -20,7 +20,7 @@
         &-header {
             display: grid;
             grid-template-columns: auto 1fr;
-            column-gap: 2rem;
+            column-gap: 1rem;
             align-items: center;
             padding: 1rem 2rem;
             border-bottom: 1px solid $gray;
@@ -31,13 +31,22 @@
                 color: $white;
                 font-size: 1.2rem;
             }
+            & ~ div {
+                padding: 1rem 2rem;
+            }
+            @include for-size(xs) {
+                &,
+                & ~ div {
+                    padding: 1rem;
+                }
+            }
         }
         &-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1rem;
-            padding: 1rem 2rem;
-            div:not(:last-child) {
+            margin-bottom: 1rem;
+            p:not(:last-child) {
                 display: flex;
                 align-items: center;
                 column-gap: 1rem;
@@ -45,7 +54,7 @@
                     color: $clr-primary-3;
                 }
             }
-            div:last-child {
+            p:last-child {
                 justify-self: flex-start;
                 padding: 0 0.5rem;
                 border: 1px solid $clr-primary-2;
@@ -61,11 +70,6 @@
                     color: $red;
                 }
             }
-        }
-        &-footer {
-            display: flex;
-            column-gap: 1rem;
-            padding: 0 2rem 1rem;
         }
     }
 }
