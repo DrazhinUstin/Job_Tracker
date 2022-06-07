@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axiosInstance from '../../utils/axios';
+import axios, { handleAxiosError } from '../../utils/axios';
 import { getStorageItem, setStorageItem, removeStorageItem } from '../../utils/storage';
 import { toast } from 'react-toastify';
 
@@ -10,10 +10,7 @@ const initialState = {
 
 export const loginUser = createAsyncThunk('user/loginUser', async (user, thunkAPI) => {
     try {
-        const response = await axiosInstance.post(
-            `/auth/${user.name ? 'register' : 'login'}`,
-            user
-        );
+        const response = await axios.post(`/auth/${user.name ? 'register' : 'login'}`, user);
         return response.data;
     } catch (error) {
         return thunkAPI.rejectWithValue(error.response.data.msg);
@@ -22,10 +19,10 @@ export const loginUser = createAsyncThunk('user/loginUser', async (user, thunkAP
 
 export const updateUser = createAsyncThunk('user/updateUser', async (user, thunkAPI) => {
     try {
-        const response = await axiosInstance.patch('/auth/updateUser', user);
+        const response = await axios.patch('/auth/updateUser', user);
         return response.data.user;
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data.msg);
+        return handleAxiosError(error, thunkAPI);
     }
 });
 
@@ -33,10 +30,10 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        logoutUser(state) {
+        logoutUser(state, { payload }) {
             state.user = null;
             removeStorageItem('user');
-            toast.success('you are logged out');
+            if (payload) toast.success(payload);
         },
     },
     extraReducers: {

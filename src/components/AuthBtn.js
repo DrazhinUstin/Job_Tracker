@@ -1,13 +1,12 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FaUserCircle, FaAngleDown } from 'react-icons/fa';
-import { logoutUser } from '../features/user/userSlice';
+import { clearStore } from '../store';
 
 const AuthBtn = () => {
     const [isBtnActive, setIsBtnActive] = useState(false);
     const { user } = useSelector((state) => state.user);
-    const dispatch = useDispatch();
 
     if (!user) {
         return (
@@ -26,7 +25,7 @@ const AuthBtn = () => {
                 {user.name}
                 <FaAngleDown />
             </button>
-            <button className='btn' onClick={() => dispatch(logoutUser())}>
+            <button className='btn' onClick={() => clearStore('you are logged out')}>
                 log out
             </button>
         </div>

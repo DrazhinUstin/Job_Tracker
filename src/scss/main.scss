@@ -184,6 +184,9 @@ button {
         }
         @include for-size(md) {
             grid-template-columns: unset;
+            & > :last-child {
+                margin-top: 0.5rem;
+            }
         }
     }
 }

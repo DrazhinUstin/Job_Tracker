@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import axiosInstance from '../../utils/axios';
+import axios, { handleAxiosError } from '../../utils/axios';
 import { showLoading, getJobs, hideLoading } from '../jobs/jobsSlice';
 
 const defaultJob = {
@@ -22,33 +22,33 @@ const initialState = {
 
 export const addJob = createAsyncThunk('singleJob/addJob', async (job, thunkAPI) => {
     try {
-        const response = await axiosInstance.post('/jobs', job);
+        const response = await axios.post('/jobs', job);
         thunkAPI.dispatch(restoreDefaultJob());
         return response.data;
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data.msg);
+        return handleAxiosError(error, thunkAPI);
     }
 });
 
 export const editJob = createAsyncThunk('singleJob/editJob', async ({ jobId, job }, thunkAPI) => {
     try {
-        const response = await axiosInstance.patch(`/jobs/${jobId}`, job);
+        const response = await axios.patch(`/jobs/${jobId}`, job);
         thunkAPI.dispatch(restoreDefaultJob());
         return response.data;
     } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data.msg);
+        return handleAxiosError(error, thunkAPI);
     }
 });
 
 export const deleteJob = createAsyncThunk('singleJob/deleteJob', async (jobId, thunkAPI) => {
     try {
         thunkAPI.dispatch(showLoading());
-        const response = await axiosInstance.delete(`/jobs/${jobId}`);
+        const response = await axios.delete(`/jobs/${jobId}`);
         thunkAPI.dispatch(getJobs());
         return response.data.msg;
     } catch (error) {
         thunkAPI.dispatch(hideLoading());
-        return thunkAPI.rejectWithValue(error.response.data.msg);
+        return handleAxiosError(error, thunkAPI);
     }
 });
 

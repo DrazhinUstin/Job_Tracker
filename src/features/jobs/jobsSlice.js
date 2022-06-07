@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axiosInstance from '../../utils/axios';
+import axios, { handleAxiosError } from '../../utils/axios';
 import { toast } from 'react-toastify';
 
 const initialFilters = {
@@ -29,23 +29,23 @@ export const getJobs = createAsyncThunk('jobs/getJobs', async (_, thunkApi) => {
             page,
             filters: { search, status, type, sort },
         } = thunkApi.getState().jobs;
-        const response = await axiosInstance.get(
+        const response = await axios.get(
             `/jobs?status=${status}&jobType=${type}&sort=${sort}&page=${page}${
                 search ? `&search=${search}` : ''
             }`
         );
         return response.data;
     } catch (error) {
-        return thunkApi.rejectWithValue(error.response.data.msg);
+        return handleAxiosError(error, thunkApi);
     }
 });
 
 export const getStats = createAsyncThunk('jobs/getStats', async (_, thunkApi) => {
     try {
-        const response = await axiosInstance.get('/jobs/stats');
+        const response = await axios.get('/jobs/stats');
         return response.data;
     } catch (error) {
-        return thunkApi.rejectWithValue(error.response.data.msg);
+        return handleAxiosError(error, thunkApi);
     }
 });
 
@@ -69,6 +69,7 @@ const jobsSlice = createSlice({
         switchPage(state, { payload }) {
             state.page = payload;
         },
+        resetJobs: () => initialState,
     },
     extraReducers: {
         [getStats.pending]: (state) => {
@@ -96,6 +97,12 @@ const jobsSlice = createSlice({
     },
 });
 
-export const { showLoading, hideLoading, updateFilters, restoreInitialFilters, switchPage } =
-    jobsSlice.actions;
+export const {
+    showLoading,
+    hideLoading,
+    updateFilters,
+    restoreInitialFilters,
+    switchPage,
+    resetJobs,
+} = jobsSlice.actions;
 export default jobsSlice.reducer;

@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './features/user/userSlice';
-import jobsReducer from './features/jobs/jobsSlice';
-import singleJobReducer from './features/single_job/singleJobSlice';
+import userReducer, { logoutUser } from './features/user/userSlice';
+import jobsReducer, { resetJobs } from './features/jobs/jobsSlice';
+import singleJobReducer, { restoreDefaultJob } from './features/single_job/singleJobSlice';
 
 const store = configureStore({
     reducer: {
@@ -11,4 +11,10 @@ const store = configureStore({
     },
 });
 
-export default store;
+const clearStore = (msg) => {
+    store.dispatch(logoutUser(msg));
+    store.dispatch(resetJobs());
+    store.dispatch(restoreDefaultJob());
+};
+
+export { store as default, clearStore };
